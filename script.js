@@ -1,7 +1,7 @@
 const API = 'https://raw.githubusercontent.com/Vogusov/users_API/master/',
-      user_ids = [101, 102, 103, 104, 105];
+  user_ids = [101, 102, 103, 104, 105];
 
-let users_data = [];
+let users = [];
 
 
 
@@ -17,23 +17,40 @@ async function getResourse(url) {
 
 
 function getUsersData(arr) {
-  arr.forEach((id) => {
+  arr.forEach((id, i) => {
     getResourse(API + `user_${id}.json`)
-      .then(data => {
-          console.dir(data);
-          users_data.push(data);
-        })  
+    //собираем массив со всеми локациями каждого пользователя:
+      .then(user => {
+        user.all_locations = [];
+        user.posts.forEach(post => {
+          user.all_locations.push(post.location);
+        })
+        return user;
+      })
+    //делаем массив с уникальными локациями каждого пользователя:
+      .then(user => {
+        user.unique_locations = [... new Set(user.all_locations)] ;
+        return user;
+      })
+    //Собираем массив со всеми пользователями:
+      .then(user => {
+        console.log(`data of user ${i}: `, user);
+        users.push(user);
+      })
       .catch(err => console.log(err))
   })
-}
+  return users;
+ }
 
 
 
+// init
 function init() {
 
   getUsersData(user_ids);
-  
-  
+  console.log('1');
+
+
+
 
 }
-
