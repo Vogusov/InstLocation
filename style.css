@@ -4,3 +4,53 @@
   box-sizing: border-box;
 }
 
+body {
+  padding: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.heading {
+  margin-bottom: 20px;
+}
+
+.button {
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  background-color: rgb(150, 200, 220);
+  border: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.text {
+  margin-bottom: 20px;
+}
+
+.user-block {
+  display: flex;
+  min-height: 30px;
+  border-bottom: 1px solid #000;
+}
+
+
+.user-block > * {
+  padding: 5px 10px;
+  
+}
+
+.user-block:first-child {
+  border-top: 1px solid #000;
+}
+
+.user-block__name {
+  background-color: #aaa;
+  flex: 1;
+}
+
+.user-block__locations {
+  flex: 4;
+}
